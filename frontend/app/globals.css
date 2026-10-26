@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Michroma", "Orbitron", system-ui, sans-serif;
+}
+
+html { -webkit-tap-highlight-color: transparent; }
+body { @apply bg-neo-cloud text-neo-ink antialiased; }
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition active:scale-[.98] disabled:opacity-50 disabled:pointer-events-none; }
+  .btn-primary { @apply btn bg-neo-black text-neo-silver hover:bg-neo-steel; }
+  .btn-outline { @apply btn border border-neo-mist bg-white text-neo-ink hover:bg-neo-cloud; }
+  .btn-danger { @apply btn bg-red-600 text-white hover:bg-red-700; }
+  .btn-success { @apply btn bg-emerald-600 text-white hover:bg-emerald-700; }
+  .btn-lg { @apply w-full py-4 text-base; }
+  .card { @apply rounded-2xl border border-neo-mist bg-white shadow-soft; }
+  .label { @apply mb-1.5 block text-sm font-medium text-neo-steel; }
+  .input { @apply w-full rounded-xl border border-neo-mist bg-white px-3.5 py-3 text-base text-neo-ink placeholder:text-neo-silver focus:border-neo-black focus:outline-none focus:ring-2 focus:ring-neo-black/10 read-only:bg-neo-cloud; }
+  .select { @apply input appearance-none bg-no-repeat pr-10; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%232b2b2b' stroke-width='2'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E"); background-position: right .9rem center; }
+  .badge { @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold; }
+  .badge-dark { @apply badge bg-neo-black text-neo-silver; }
+  .badge-green { @apply badge bg-emerald-100 text-emerald-800; }
+  .badge-amber { @apply badge bg-amber-100 text-amber-800; }
+  .badge-red { @apply badge bg-red-100 text-red-800; }
+  .badge-grey { @apply badge bg-neo-mist text-neo-steel; }
+  .chip { @apply rounded-full border border-neo-mist bg-white px-3.5 py-2 text-sm font-medium text-neo-steel; }
+  .chip-active { @apply chip border-neo-black bg-neo-black text-neo-silver; }
+  .page-title { @apply font-display text-lg uppercase tracking-[.18em] text-neo-black; }
+}

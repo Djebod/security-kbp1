@@ -1,0 +1,23 @@
+# rahasia
+.env
+.env.local
+.env*.local
+service-account.json
+*.key
+*.pem
+
+# dependensi & build
+node_modules
+.next
+out
+dist
+build
+*.tsbuildinfo
+next-env.d.ts
+
+# sistem & editor
+.DS_Store
+Thumbs.db
+.vscode
+.idea
+*.log
