@@ -13,7 +13,7 @@ export default function SerahkanForm({ id }: { id: string }) {
       <input type="hidden" name="id" value={id} />
       <PhotoInput name="photo_pengambil" label="Foto orang yang mengambil" required />
       <FormError error={state.error} />
-      <SubmitButton className="btn-success btn-lg" pendingText="Memproses...">Serahkan — Paket Diambil</SubmitButton>
+      <SubmitButton className="btn-success btn-lg" pendingText="Memproses...">Serahkan Paket</SubmitButton>
     </form>
   );
 }

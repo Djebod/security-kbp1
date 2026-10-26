@@ -1,9 +1,15 @@
 import type { Metadata, Viewport } from "next";
+import { JetBrains_Mono, Michroma, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { APP } from "@/lib/config";
 
+/* Plus Jakarta Sans untuk isi, Michroma (geometris) untuk nama brand, JetBrains Mono untuk angka & jam */
+const sans = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const display = Michroma({ subsets: ["latin"], weight: "400", variable: "--font-display", display: "swap" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
+
 export const metadata: Metadata = {
-  title: { default: `${APP.nama} — Security`, template: `%s · ${APP.namaPendek}` },
+  title: { default: `${APP.nama} Security`, template: `%s · ${APP.namaPendek}` },
   description: APP.deskripsi,
   applicationName: APP.nama,
   manifest: "/manifest.webmanifest",
@@ -11,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#0b0c0f",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -19,13 +25,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* Inter untuk isi, Michroma (geometris) untuk judul — senada dengan logo NEO */}
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Michroma&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="id" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
       <body className="min-h-dvh font-sans">{children}</body>
     </html>
   );

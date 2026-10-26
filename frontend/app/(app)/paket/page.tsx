@@ -33,16 +33,16 @@ export default async function Page({ searchParams }: { searchParams: Record<stri
       {rows.length === 0 ? <EmptyState text="Belum ada paket." /> : (
         <div className="space-y-2">
           {rows.map((r) => (
-            <Link key={r.id} href={`/paket/${r.id}`} className="card flex gap-3 p-3 hover:border-neo-black">
+            <Link key={r.id} href={`/paket/${r.id}`} className="card flex gap-3 p-3 hover:border-neo-neon/50">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={r.photo_barang} alt="" className="h-16 w-16 shrink-0 rounded-lg bg-neo-cloud object-cover" loading="lazy" />
+              <img src={r.photo_barang} alt="" className="h-16 w-16 shrink-0 rounded-lg bg-neo-raise object-cover" loading="lazy" />
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-2">
                   <span className="truncate font-medium">{r.penerima_barang}</span>
                   <StatusBadge status={r.status} />
                 </div>
-                <p className="mt-0.5 truncate text-xs text-neo-steel/70">{r.nama_pengirim} · {r.scan_barcode}</p>
-                <p className="text-xs text-neo-steel/70">{tglIndo(r.tanggal_diterima)} · {hm(r.jam_diterima)}</p>
+                <p className="mt-0.5 truncate text-xs text-neo-silver/70">{r.nama_pengirim} · {r.scan_barcode}</p>
+                <p className="text-xs text-neo-silver/70">{tglIndo(r.tanggal_diterima)} · {hm(r.jam_diterima)}</p>
               </div>
             </Link>
           ))}

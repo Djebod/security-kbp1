@@ -39,18 +39,18 @@ export default async function Page({ searchParams }: { searchParams: Record<stri
       {rows.length === 0 ? <EmptyState text="Belum ada laporan." /> : (
         <div className="space-y-2">
           {rows.map((r) => (
-            <Link key={r.id} href={`/lost-found/${r.id}`} className="card flex gap-3 p-3 hover:border-neo-black">
+            <Link key={r.id} href={`/lost-found/${r.id}`} className="card flex gap-3 p-3 hover:border-neo-neon/50">
               {r.photo_barang ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={r.photo_barang} alt="" className="h-16 w-16 shrink-0 rounded-lg object-cover" loading="lazy" />
-              ) : <div className="h-16 w-16 shrink-0 rounded-lg bg-neo-cloud" />}
+              ) : <div className="h-16 w-16 shrink-0 rounded-lg bg-neo-raise" />}
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-2">
                   <span className="truncate font-medium">{r.nama_barang}</span>
                   <StatusBadge status={r.status} />
                 </div>
-                <p className="mt-0.5 text-xs text-neo-steel/70"><StatusBadge status={r.type_kejadian} /> {tglIndo(r.tanggal)} · {r.tempat_kejadian}</p>
-                <p className="text-xs text-neo-steel/70">Pelapor: {r.nama_pelapor}</p>
+                <p className="mt-0.5 text-xs text-neo-silver/70"><StatusBadge status={r.type_kejadian} /> {tglIndo(r.tanggal)} · {r.tempat_kejadian}</p>
+                <p className="text-xs text-neo-silver/70">Pelapor: {r.nama_pelapor}</p>
               </div>
             </Link>
           ))}

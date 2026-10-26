@@ -2,32 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-display: "Michroma", "Orbitron", system-ui, sans-serif;
-}
+/* Font di-set oleh next/font di app/layout.tsx lewat variabel --font-sans / --font-display / --font-mono */
 
-html { -webkit-tap-highlight-color: transparent; }
-body { @apply bg-neo-cloud text-neo-ink antialiased; }
+html { -webkit-tap-highlight-color: transparent; color-scheme: dark; }
+body { @apply bg-neo-base text-neo-cloud antialiased; }
+::selection { @apply bg-neo-neon text-neo-black; }
 
 @layer components {
-  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition active:scale-[.98] disabled:opacity-50 disabled:pointer-events-none; }
-  .btn-primary { @apply btn bg-neo-black text-neo-silver hover:bg-neo-steel; }
-  .btn-outline { @apply btn border border-neo-mist bg-white text-neo-ink hover:bg-neo-cloud; }
-  .btn-danger { @apply btn bg-red-600 text-white hover:bg-red-700; }
-  .btn-success { @apply btn bg-emerald-600 text-white hover:bg-emerald-700; }
+  /* Tombol: radius 12 px, teks tebal, sedikit mengecil saat ditekan */
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition duration-150 active:scale-[.98] disabled:pointer-events-none disabled:opacity-50; }
+  .btn-primary { @apply btn bg-neo-neon text-neo-black hover:brightness-110 hover:shadow-glow; }
+  .btn-outline { @apply btn border border-neo-line bg-neo-panel text-neo-cloud hover:border-neo-silver/50 hover:bg-neo-raise; }
+  .btn-danger { @apply btn bg-rose-500 text-white hover:bg-rose-400; }
+  .btn-success { @apply btn bg-emerald-500 text-neo-black hover:bg-emerald-400; }
   .btn-lg { @apply w-full py-4 text-base; }
-  .card { @apply rounded-2xl border border-neo-mist bg-white shadow-soft; }
-  .label { @apply mb-1.5 block text-sm font-medium text-neo-steel; }
-  .input { @apply w-full rounded-xl border border-neo-mist bg-white px-3.5 py-3 text-base text-neo-ink placeholder:text-neo-silver focus:border-neo-black focus:outline-none focus:ring-2 focus:ring-neo-black/10 read-only:bg-neo-cloud; }
-  .select { @apply input appearance-none bg-no-repeat pr-10; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%232b2b2b' stroke-width='2'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E"); background-position: right .9rem center; }
+
+  /* Kartu: radius 16 px, garis tipis, highlight 1 px di tepi atas */
+  .card { @apply rounded-2xl border border-neo-line bg-neo-panel shadow-edge; }
+
+  /* Form */
+  .label { @apply mb-1.5 block text-sm font-medium text-neo-silver; }
+  .input { @apply w-full rounded-xl border border-neo-line bg-neo-panel px-3.5 py-3 text-base text-neo-cloud placeholder:text-neo-silver/50 focus:border-neo-neon focus:outline-none focus:ring-2 focus:ring-neo-neon/25 read-only:bg-neo-raise read-only:text-neo-silver disabled:opacity-50; }
+  .select { @apply input appearance-none bg-no-repeat pr-10; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23b9bcc2' stroke-width='2'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E"); background-position: right .9rem center; }
+
+  /* Label status */
   .badge { @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold; }
-  .badge-dark { @apply badge bg-neo-black text-neo-silver; }
-  .badge-green { @apply badge bg-emerald-100 text-emerald-800; }
-  .badge-amber { @apply badge bg-amber-100 text-amber-800; }
-  .badge-red { @apply badge bg-red-100 text-red-800; }
-  .badge-grey { @apply badge bg-neo-mist text-neo-steel; }
-  .chip { @apply rounded-full border border-neo-mist bg-white px-3.5 py-2 text-sm font-medium text-neo-steel; }
-  .chip-active { @apply chip border-neo-black bg-neo-black text-neo-silver; }
-  .page-title { @apply font-display text-lg uppercase tracking-[.18em] text-neo-black; }
+  .badge-dark { @apply badge bg-neo-cloud/10 text-neo-cloud ring-1 ring-inset ring-white/15; }
+  .badge-green { @apply badge bg-emerald-400/10 text-emerald-300 ring-1 ring-inset ring-emerald-400/30; }
+  .badge-amber { @apply badge bg-amber-400/10 text-amber-300 ring-1 ring-inset ring-amber-400/30; }
+  .badge-red { @apply badge bg-rose-400/10 text-rose-300 ring-1 ring-inset ring-rose-400/30; }
+  .badge-grey { @apply badge bg-neo-raise text-neo-silver ring-1 ring-inset ring-white/10; }
+  .badge-neon { @apply badge bg-neo-neon/10 text-neo-neon ring-1 ring-inset ring-neo-neon/30; }
+
+  /* Chip saringan */
+  .chip { @apply rounded-full border border-neo-line bg-neo-panel px-3.5 py-2 text-sm font-medium text-neo-silver transition hover:border-neo-silver/50; }
+  .chip-active { @apply chip border-neo-neon bg-neo-neon text-neo-black hover:border-neo-neon; }
+
+  /* Kotak pemberitahuan */
+  .notice-ok { @apply rounded-xl border border-emerald-400/30 bg-emerald-400/10 p-4 text-emerald-200; }
+  .notice-bad { @apply rounded-xl border border-rose-400/30 bg-rose-400/10 p-4 text-rose-200; }
+
+  .page-title { @apply font-display text-base uppercase tracking-[.18em] text-neo-cloud sm:text-lg; }
+
+  /* Tekstur titik halus untuk panel brand (login) */
+  .dot-grid {
+    background-image: radial-gradient(rgba(185,188,194,.22) 1px, transparent 1px);
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(ellipse at 30% 40%, #000 20%, transparent 75%);
+    mask-image: radial-gradient(ellipse at 30% 40%, #000 20%, transparent 75%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }

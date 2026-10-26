@@ -11,7 +11,7 @@ export default function Pagination({ basePath, page, total, perPage, params }: {
   };
   return (
     <div className="mt-5 flex items-center justify-between text-sm">
-      <span className="text-neo-steel/70">Halaman {page} dari {pages} · {total} data</span>
+      <span className="text-neo-silver/70">Halaman {page} dari {pages} · {total} data</span>
       <div className="flex gap-2">
         {page > 1 && <Link href={link(page - 1)} className="btn-outline px-3 py-2">Sebelumnya</Link>}
         {page < pages && <Link href={link(page + 1)} className="btn-outline px-3 py-2">Berikutnya</Link>}

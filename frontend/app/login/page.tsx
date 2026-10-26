@@ -68,42 +68,53 @@ function LoginInner() {
   }
 
   return (
-    <main className="flex min-h-dvh flex-col bg-neo-black text-neo-silver">
-      <div className="flex flex-1 flex-col items-center justify-center px-6">
-        <NeoLogo size="lg" />
-        <p className="mt-8 font-display text-xs uppercase tracking-[.35em] text-neo-silver/70">Security System</p>
-        <h1 className="mt-2 text-center text-xl font-semibold text-white">{APP.nama}</h1>
+    <main className="flex min-h-dvh flex-col bg-neo-base text-neo-cloud lg:flex-row">
+      {/* Panel brand: logo + nama sistem. Di laptop jadi kolom kiri, di HP jadi bagian atas. */}
+      <section className="relative overflow-hidden border-b border-neo-line px-6 pb-10 pt-12 lg:flex lg:flex-1 lg:flex-col lg:justify-between lg:border-b-0 lg:border-r lg:px-16 lg:py-14">
+        <div className="dot-grid pointer-events-none absolute inset-0" aria-hidden />
+        <div className="pointer-events-none absolute -bottom-32 -left-24 h-80 w-80 rounded-full bg-neo-neon/10 blur-3xl" aria-hidden />
+        <div className="relative">
+          <NeoLogo size="md" />
+        </div>
+        <div className="relative mt-10 lg:mt-0">
+          <p className="font-display text-[11px] uppercase tracking-[.35em] text-neo-neon">Security System</p>
+          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-neo-cloud lg:text-5xl">{APP.nama}</h1>
+          <p className="mt-2 text-sm text-neo-silver/70 lg:text-base">{APP.tempat}</p>
+        </div>
+      </section>
 
-        <div className="mt-10 w-full max-w-sm space-y-4">
+      {/* Panel masuk */}
+      <section className="flex flex-1 flex-col justify-center px-6 py-10 lg:max-w-xl lg:px-16">
+        <h2 className="text-lg font-semibold text-neo-cloud">Masuk</h2>
+        <p className="mt-1 text-sm text-neo-silver/70">Gunakan akun Google yang terdaftar sebagai staf.</p>
+
+        <div className="mt-8 space-y-4">
           {inApp ? (
-            <div className="rounded-xl border border-amber-400/40 bg-amber-400/10 p-4 text-sm text-amber-200">
+            <div className="rounded-xl border border-amber-400/30 bg-amber-400/10 p-4 text-sm text-amber-200">
               Login Google tidak didukung di browser bawaan aplikasi ini. <b>Buka lewat Chrome atau Safari.</b>
             </div>
           ) : (
-            <button onClick={masuk} disabled={loading} className="btn btn-lg bg-white text-neo-black hover:bg-neo-mist">
+            <button onClick={masuk} disabled={loading} className="btn btn-lg bg-neo-cloud text-neo-black hover:bg-white">
               <GoogleIcon />
               {loading ? "Memproses..." : "Masuk dengan Google"}
             </button>
           )}
-          {error && (
-            <div className="rounded-xl border border-red-400/40 bg-red-400/10 p-4 text-sm text-red-200">{error}</div>
-          )}
-          <p className="text-center text-xs text-neo-silver/60">
-            Hanya untuk staf {APP.tempat} yang terdaftar.
-          </p>
+          {error && <div className="notice-bad text-sm">{error}</div>}
+          <p className="text-xs text-neo-silver/60">Hanya untuk staf {APP.tempat} yang terdaftar.</p>
         </div>
-      </div>
-      <footer className="flex flex-col items-center gap-3 pb-6 text-center text-[10px] uppercase tracking-[.3em] text-neo-silver/40">
-        <Link href="/tentang" className="rounded-full border border-white/15 px-4 py-2 text-neo-silver/70 hover:bg-white/10">Tentang sistem · boarding pass teknologi</Link>
-        <span>{APP.tempat}</span>
-      </footer>
+
+        <footer className="mt-14 flex flex-wrap items-center justify-between gap-3 text-xs text-neo-silver/50">
+          <Link href="/tentang" className="rounded-full border border-neo-line px-4 py-2 text-neo-silver transition hover:border-neo-silver/50 hover:text-neo-cloud">Tentang sistem</Link>
+          <span className="font-display text-[10px] uppercase tracking-[.25em]">{APP.namaPendek}</span>
+        </footer>
+      </section>
     </main>
   );
 }
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<main className="min-h-dvh bg-neo-black" />}>
+    <Suspense fallback={<main className="min-h-dvh bg-neo-base" />}>
       <LoginInner />
     </Suspense>
   );

@@ -29,17 +29,17 @@ export default async function Page({ searchParams }: { searchParams: Record<stri
       {rows.length === 0 ? <EmptyState text="Belum ada checklist." /> : (
         <div className="space-y-2">
           {rows.map((r) => (
-            <Link key={r.id} href={`/shift-report/${r.id}`} className="card flex gap-3 p-3 hover:border-neo-black">
+            <Link key={r.id} href={`/shift-report/${r.id}`} className="card flex gap-3 p-3 hover:border-neo-neon/50">
               {r.photo ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={r.photo} alt="" className="h-16 w-16 shrink-0 rounded-lg object-cover" loading="lazy" />
-              ) : <div className="h-16 w-16 shrink-0 rounded-lg bg-neo-cloud" />}
+              ) : <div className="h-16 w-16 shrink-0 rounded-lg bg-neo-raise" />}
               <div className="min-w-0 flex-1">
                 <div className="flex items-center justify-between gap-2">
                   <span className="truncate font-medium">{r.nama_lokasi}</span>
                   <span className="badge-dark shrink-0">{r.aktivitas}</span>
                 </div>
-                <p className="mt-0.5 text-xs text-neo-steel/70">{tglIndo(r.tanggal)} · {hm(r.waktu)} · {r.security_name}{r.pic2 ? ` · PIC ${r.pic2}` : ""}</p>
+                <p className="mt-0.5 text-xs text-neo-silver/70">{tglIndo(r.tanggal)} · {hm(r.waktu)} · {r.security_name}{r.pic2 ? ` · PIC ${r.pic2}` : ""}</p>
               </div>
             </Link>
           ))}

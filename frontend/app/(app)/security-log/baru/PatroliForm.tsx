@@ -34,14 +34,14 @@ export default function PatroliForm() {
         <input readOnly name="code_lokasi" value={hasil?.ok ? hasil.code : ""} placeholder="Belum di-scan" className="input" />
       </div>
 
-      {cek && <p className="text-sm text-neo-steel/70">Memeriksa kode...</p>}
+      {cek && <p className="text-sm text-neo-silver/70">Memeriksa kode...</p>}
       {hasil && !cek && (hasil.ok ? (
-        <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-800">
+        <div className="notice-ok">
           <p className="text-xs uppercase tracking-wider">Lokasi</p>
           <p className="text-lg font-semibold">{hasil.nama}</p>
         </div>
       ) : (
-        <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-red-700">
+        <div className="notice-bad">
           <p className="font-semibold">Barcode tidak dikenali</p>
           <p className="text-xs opacity-80">Isi: {hasil.raw}</p>
         </div>
@@ -49,7 +49,7 @@ export default function PatroliForm() {
 
       <FormError error={state.error} />
       <SubmitButton disabled={!hasil?.ok}>Simpan Patroli</SubmitButton>
-      <p className="text-center text-xs text-neo-steel/60">Tanggal, jam, dan nama petugas diisi otomatis oleh sistem.</p>
+      <p className="text-center text-xs text-neo-silver/60">Tanggal, jam, dan nama petugas diisi otomatis oleh sistem.</p>
     </form>
   );
 }

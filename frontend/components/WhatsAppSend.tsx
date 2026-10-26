@@ -17,15 +17,15 @@ export default function WhatsAppSend({ pesan, label = "Kirim info via WhatsApp" 
 
   return (
     <div className="card p-4">
-      <p className="mb-2 text-sm font-semibold">{label}</p>
+      <p className="mb-2 text-sm font-semibold text-neo-cloud">{label}</p>
       <div className="flex gap-2">
         <input value={nomor} onChange={(e) => setNomor(e.target.value)} inputMode="tel" placeholder="Nomor WhatsApp tujuan" className="input" />
         <button type="button" onClick={kirim} className="btn-success shrink-0 px-4"><Icon name="wa" className="h-5 w-5" /> Kirim</button>
       </div>
-      {warn && <p className="mt-2 text-xs text-red-600">{warn}</p>}
-      <details className="mt-3 text-xs text-neo-steel/70">
+      {warn && <p className="mt-2 text-xs text-rose-300">{warn}</p>}
+      <details className="mt-3 text-xs text-neo-silver/70">
         <summary className="cursor-pointer">Lihat isi pesan</summary>
-        <pre className="mt-2 whitespace-pre-wrap rounded-lg bg-neo-cloud p-3 font-sans">{pesan}</pre>
+        <pre className="mt-2 whitespace-pre-wrap rounded-xl bg-neo-raise p-3 font-sans text-neo-silver">{pesan}</pre>
       </details>
     </div>
   );

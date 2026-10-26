@@ -73,14 +73,14 @@ export default function Scanner({ onScan, onClose, title = "Arahkan kamera ke QR
       <div className="flex flex-1 items-center justify-center px-4">
         <div id={id} className="w-full max-w-md overflow-hidden rounded-2xl [&_video]:rounded-2xl" />
       </div>
-      {error && <p className="px-6 pb-4 text-center text-sm text-red-300">{error}</p>}
+      {error && <p className="px-6 pb-4 text-center text-sm text-rose-300">{error}</p>}
       <div className="flex gap-3 px-4 pb-8">
         {torchOk && (
-          <button onClick={toggleTorch} className="btn flex-1 border border-white/20 text-neo-silver">
+          <button onClick={toggleTorch} className="btn-outline flex-1">
             <Icon name="flash" className="h-4 w-4" /> {torch ? "Matikan Flash" : "Nyalakan Flash"}
           </button>
         )}
-        <button onClick={tutup} className="btn flex-1 bg-white text-neo-black">Tutup</button>
+        <button onClick={tutup} className="btn flex-1 bg-neo-cloud text-neo-black">Tutup</button>
       </div>
     </div>
   );

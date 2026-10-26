@@ -26,24 +26,24 @@ export default function PhotoInput({ name, label, required, hint }: Props) {
 
   return (
     <div>
-      <span className="label">{label}{required && <span className="text-red-600"> *</span>}</span>
+      <span className="label">{label}{required && <span className="text-neo-neon"> *</span>}</span>
       <input ref={fileRef} type="file" accept="image/*" capture="environment" className="hidden" onChange={onFile} />
       <input type="hidden" name={name} value={dataUrl} />
       {dataUrl ? (
         <div className="space-y-2">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={dataUrl} alt="Pratinjau" className="w-full rounded-xl border border-neo-mist object-cover" />
+          <img src={dataUrl} alt="Pratinjau" className="w-full rounded-2xl border border-neo-line object-cover" />
           <div className="flex gap-2">
             <button type="button" onClick={() => fileRef.current?.click()} className="btn-outline flex-1"><Icon name="camera" className="h-4 w-4" /> Ulangi</button>
-            <button type="button" onClick={() => setDataUrl("")} className="btn-outline px-4"><Icon name="x" className="h-4 w-4" /></button>
+            <button type="button" onClick={() => setDataUrl("")} className="btn-outline px-4" aria-label="Hapus foto"><Icon name="x" className="h-4 w-4" /></button>
           </div>
         </div>
       ) : (
         <button type="button" onClick={() => fileRef.current?.click()} disabled={busy}
-          className="flex w-full flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-neo-mist bg-white py-8 text-neo-steel hover:border-neo-black">
+          className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-neo-line bg-neo-panel py-8 text-neo-silver transition hover:border-neo-neon hover:text-neo-cloud">
           <Icon name="camera" className="h-8 w-8" />
           <span className="text-sm font-medium">{busy ? "Memproses..." : "Ambil Foto"}</span>
-          {hint && <span className="text-xs text-neo-steel/60">{hint}</span>}
+          {hint && <span className="text-xs text-neo-silver/60">{hint}</span>}
         </button>
       )}
     </div>

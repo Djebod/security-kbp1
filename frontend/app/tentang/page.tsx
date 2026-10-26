@@ -84,7 +84,7 @@ export default function Tentang() {
             <div className="flex-1 p-6 sm:p-8">
               <div className="flex items-center justify-between">
                 <p className="font-display text-[10px] uppercase tracking-[.35em] text-neo-steel/60">Boarding pass</p>
-                <span className="badge-dark">Economy · Web App</span>
+                <span className="badge bg-neo-black text-neo-silver">Economy · Web App</span>
               </div>
               <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-4">
                 <Field label="Penumpang" value="Tim Security" />
@@ -145,7 +145,7 @@ export default function Tentang() {
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                   <span className="font-mono text-xs text-neo-steel/60">+{s.jam.slice(3)} dtk</span>
                   <h3 className="text-lg font-semibold">{s.kota}</h3>
-                  <span className="badge-grey font-mono">{s.kode}</span>
+                  <span className="badge bg-neo-mist font-mono text-neo-steel">{s.kode}</span>
                 </div>
                 <p className="mt-1 max-w-2xl text-sm leading-relaxed text-neo-steel">{s.detail}</p>
               </li>
@@ -181,7 +181,7 @@ export default function Tentang() {
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
                     <h3 className="font-semibold">{k.modul}</h3>
-                    <span className="badge-dark">{k.bukti}</span>
+                    <span className="badge bg-neo-black text-neo-silver">{k.bukti}</span>
                   </div>
                   <p className="mt-1 font-mono text-xs text-neo-steel/70">{k.tabel}</p>
                   <p className="mt-1 text-sm leading-relaxed text-neo-steel">{k.isi}</p>

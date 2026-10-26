@@ -15,11 +15,11 @@ export default function ChecklistForm({ lokasi }: { lokasi: Lokasi[] }) {
   return (
     <ActionForm action={simpanChecklist} submitLabel="Simpan Checklist">
       <div>
-        <label className="label">Jenis aktivitas <span className="text-red-600">*</span></label>
+        <label className="label">Jenis aktivitas <span className="text-neo-neon">*</span></label>
         <div className="grid gap-2">
           {AKTIVITAS.map((a) => (
-            <label key={a} className={`flex cursor-pointer items-center gap-3 rounded-xl border p-3 ${aktivitas === a ? "border-neo-black bg-neo-black text-neo-silver" : "border-neo-mist bg-white"}`}>
-              <input type="radio" name="aktivitas" value={a} required checked={aktivitas === a} onChange={() => { setAktivitas(a); setPic(""); }} className="accent-neo-black" />
+            <label key={a} className={`flex cursor-pointer items-center gap-3 rounded-xl border p-3 ${aktivitas === a ? "border-neo-neon bg-neo-neon/10 text-neo-cloud" : "border-neo-line bg-neo-panel"}`}>
+              <input type="radio" name="aktivitas" value={a} required checked={aktivitas === a} onChange={() => { setAktivitas(a); setPic(""); }} className="accent-neo-neon" />
               <span className="text-sm font-medium">{a}</span>
               {AKTIVITAS_WAJIB_PIC.includes(a) && <span className="ml-auto text-[10px] uppercase tracking-wider opacity-70">foto + PIC</span>}
             </label>
@@ -28,7 +28,7 @@ export default function ChecklistForm({ lokasi }: { lokasi: Lokasi[] }) {
       </div>
 
       <div>
-        <label className="label">Lokasi <span className="text-red-600">*</span></label>
+        <label className="label">Lokasi <span className="text-neo-neon">*</span></label>
         <select name="code_lokasi" required className="select" defaultValue="">
           <option value="" disabled>Pilih lokasi</option>
           {lokasi.map((l) => <option key={l.code_lokasi} value={l.code_lokasi}>{l.nama_lokasi}</option>)}
@@ -37,7 +37,7 @@ export default function ChecklistForm({ lokasi }: { lokasi: Lokasi[] }) {
 
       {wajibPic && (
         <div>
-          <label className="label">PIC (tim Housekeeping) <span className="text-red-600">*</span></label>
+          <label className="label">PIC (tim Housekeeping) <span className="text-neo-neon">*</span></label>
           <input type="hidden" name="pic2" value={pic} />
           <div className="flex flex-wrap gap-2">
             {DAFTAR_PIC.map((n) => (

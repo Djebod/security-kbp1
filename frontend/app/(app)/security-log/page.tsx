@@ -49,15 +49,15 @@ export default async function Page({ searchParams }: { searchParams: Record<stri
           {hari.map((h) => (
             <details key={h.tanggal} className="card group" open={h.tanggal === hariIni}>
               <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3">
-                <span className="font-medium">{tglIndo(h.tanggal, true)}{h.tanggal === hariIni && <span className="badge-dark ml-2">Hari ini</span>}</span>
+                <span className="font-medium">{tglIndo(h.tanggal, true)}{h.tanggal === hariIni && <span className="badge-neon ml-2">Hari ini</span>}</span>
                 <span className="badge-grey">{h.jumlah} scan</span>
               </summary>
-              <ul className="divide-y divide-neo-mist border-t border-neo-mist">
+              <ul className="divide-y divide-neo-line border-t border-neo-line">
                 {detail.filter((d) => ymd(d.tanggal) === h.tanggal).map((d) => (
                   <li key={d.id} className="flex items-center gap-3 px-4 py-2.5 text-sm">
-                    <span className="w-12 font-mono text-neo-steel">{hm(d.waktu)}</span>
-                    <span className="flex-1"><span className="font-medium">{d.nama_lokasi}</span> <span className="text-xs text-neo-steel/60">{d.code_lokasi}</span></span>
-                    <span className="text-neo-steel/80">{d.security_name}</span>
+                    <span className="w-12 font-mono text-neo-silver">{hm(d.waktu)}</span>
+                    <span className="flex-1"><span className="font-medium">{d.nama_lokasi}</span> <span className="text-xs text-neo-silver/60">{d.code_lokasi}</span></span>
+                    <span className="text-neo-silver/80">{d.security_name}</span>
                   </li>
                 ))}
               </ul>

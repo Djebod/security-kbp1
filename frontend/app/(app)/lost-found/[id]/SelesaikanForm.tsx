@@ -11,7 +11,7 @@ export default function SelesaikanForm({ id }: { id: string }) {
       <p className="text-sm font-semibold">Selesaikan laporan</p>
       <input type="hidden" name="id" value={id} />
       <div>
-        <label className="label">Catatan penyelesaian <span className="text-red-600">*</span></label>
+        <label className="label">Catatan penyelesaian <span className="text-neo-neon">*</span></label>
         <textarea name="remark" rows={3} required className="input" placeholder="Barang sudah dikembalikan ke pemilik, dll." />
       </div>
       <FormError error={state.error} />
