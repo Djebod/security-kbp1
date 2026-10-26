@@ -196,7 +196,7 @@ Project ini memakai akun **`Djebod`** (`syam.rakhmany@gmail.com`). Laptop Bang S
    git config user.name "Djebod"
    git config user.email "syam.rakhmany@gmail.com"
    git branch -M main
-   git remote add origin https://Djebod@github.com/Djebod/hotel-neo-kbp.git
+   git remote add origin https://Djebod@github.com/Djebod/security-kbp1.git
    ```
 3. Cek ulang:
    ```
@@ -207,9 +207,9 @@ Project ini memakai akun **`Djebod`** (`syam.rakhmany@gmail.com`). Laptop Bang S
    ✅ Hasil yang BENAR:
    - `user.name` → `Djebod`
    - `user.email` → `syam.rakhmany@gmail.com`
-   - `git remote -v` → `https://Djebod@github.com/Djebod/hotel-neo-kbp.git`
+   - `git remote -v` → `https://Djebod@github.com/Djebod/security-kbp1.git`
 
-   ❌ Kalau berbeda, ulangi perintah `git config` / `git remote set-url origin https://Djebod@github.com/Djebod/hotel-neo-kbp.git` sampai benar.
+   ❌ Kalau berbeda, ulangi perintah `git config` / `git remote set-url origin https://Djebod@github.com/Djebod/security-kbp1.git` sampai benar.
 
 ### 🚀 Langkah 2 — Simpan & kirim ke GitHub
 
@@ -316,12 +316,12 @@ git config user.name
 git config user.email
 git remote -v
 ```
-✅ Harus: `Djebod` · `syam.rakhmany@gmail.com` · `https://Djebod@github.com/Djebod/hotel-neo-kbp.git`.
+✅ Harus: `Djebod` · `syam.rakhmany@gmail.com` · `https://Djebod@github.com/Djebod/security-kbp1.git`.
 ❌ Kalau beda:
 ```
 git config user.name "Djebod"
 git config user.email "syam.rakhmany@gmail.com"
-git remote set-url origin https://Djebod@github.com/Djebod/hotel-neo-kbp.git
+git remote set-url origin https://Djebod@github.com/Djebod/security-kbp1.git
 ```
 
 ### 🚀 Langkah 2 — Simpan & kirim

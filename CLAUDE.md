@@ -36,4 +36,4 @@ Pemilik: Bang Syam. Bahasa komunikasi & UI: **Bahasa Indonesia**. Perlakukan pem
 5. `npm run typecheck && npm run build` harus lolos. `npm test` untuk helper.
 
 ## Setelah setiap perubahan
-Selalu sertakan untuk pemilik: Blok Cek Akun GitHub (**Djebod** / `syam.rakhmany@gmail.com` / `https://Djebod@github.com/Djebod/hotel-neo-kbp.git`) lalu `git add .` → `git commit -m "catatan perubahan"` → `git push`. Lihat README bagian 11.
+Selalu sertakan untuk pemilik: Blok Cek Akun GitHub (**Djebod** / `syam.rakhmany@gmail.com` / `https://Djebod@github.com/Djebod/security-kbp1.git`) lalu `git add .` → `git commit -m "catatan perubahan"` → `git push`. Lihat README bagian 11.
