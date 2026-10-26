@@ -57,7 +57,10 @@ export async function getSession(): Promise<Session | null> {
     if (!email) return null;
     const staff = await getStaff(email);
     const err = cekBolehMasuk(email, staff);
-    if (err) return null;
+    if (err) {
+      console.error("session ditolak:", email, "-", err);
+      return null;
+    }
     const isSuper = superAdminEmails().includes(email);
     return {
       email,
@@ -66,7 +69,8 @@ export async function getSession(): Promise<Session | null> {
       role: isSuper ? "SUPERADMIN" : staff?.role || "STAFF",
       isAdmin: isSuper || ROLE_BEBAS.includes(staff?.role || ""),
     };
-  } catch {
+  } catch (e) {
+    console.error("session error:", (e as { code?: string })?.code || "", (e as Error)?.message || e);
     return null;
   }
 }
