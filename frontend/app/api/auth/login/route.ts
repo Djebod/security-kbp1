@@ -8,16 +8,21 @@ export async function POST(req: Request) {
     const { idToken } = await req.json();
     if (!idToken) return NextResponse.json({ error: "Token kosong." }, { status: 400 });
 
-    const decoded = await adminAuth().verifyIdToken(idToken, true);
+    // Token baru saja diterbitkan Google beberapa detik lalu → cukup cek tanda tangan (tanpa cek revokasi).
+    const decoded = await adminAuth().verifyIdToken(idToken);
     const email = (decoded.email || "").toLowerCase();
     if (!email) return NextResponse.json({ error: "Email tidak ditemukan di akun Google." }, { status: 400 });
 
-    const staff = await getStaff(email);
+    // Baca data staf & buat cookie sesi berbarengan (hemat satu perjalanan ke server Firebase).
+    // Cookie hanya DIPASANG bila lolos pemeriksaan di bawah.
+    const expiresIn = SESSION_HARI * 24 * 60 * 60 * 1000;
+    const [staff, sessionCookie] = await Promise.all([
+      getStaff(email),
+      adminAuth().createSessionCookie(idToken, { expiresIn }),
+    ]);
     const err = cekBolehMasuk(email, staff);
     if (err) return NextResponse.json({ error: err }, { status: 403 });
 
-    const expiresIn = SESSION_HARI * 24 * 60 * 60 * 1000;
-    const sessionCookie = await adminAuth().createSessionCookie(idToken, { expiresIn });
     cookies().set(SESSION_COOKIE, sessionCookie, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",

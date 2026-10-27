@@ -8,6 +8,9 @@ import { clientAuth, googleProvider } from "@/lib/firebase-client";
 import { APP } from "@/lib/config";
 import NeoLogo from "@/components/NeoLogo";
 
+/** Penanda di sessionStorage: sedang menunggu hasil login redirect dari Google */
+const KUNCI_REDIRECT = "neo_login_redirect";
+
 function isInAppBrowser() {
   const ua = navigator.userAgent || "";
   return /FBAN|FBAV|Instagram|Line\/|Twitter|TikTok/i.test(ua);
@@ -25,7 +28,8 @@ function LoginInner() {
 
   async function tukarSesi(user: User) {
     setLoading(true);
-    const idToken = await user.getIdToken(true);
+    // Token baru saja diterbitkan saat login → tidak perlu dipaksa refresh (hemat satu panggilan jaringan).
+    const idToken = await user.getIdToken();
     const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -44,10 +48,17 @@ function LoginInner() {
   useEffect(() => {
     setInApp(isInAppBrowser());
     if (params.get("reason") === "expired") setError("Sesi Anda berakhir. Silakan masuk kembali.");
+    // Baru kembali dari halaman Google (HP)? Langsung tampilkan "Memproses..." supaya tidak terlihat diam.
+    const menunggu = sessionStorage.getItem(KUNCI_REDIRECT) === "1";
+    if (menunggu) setLoading(true);
     // Hasil login redirect (HP)
     getRedirectResult(clientAuth())
-      .then((r) => { if (r?.user) tukarSesi(r.user); })
-      .catch((e) => setError(pesanFirebase(e)));
+      .then((r) => {
+        sessionStorage.removeItem(KUNCI_REDIRECT);
+        if (r?.user) tukarSesi(r.user);
+        else if (menunggu) setLoading(false);
+      })
+      .catch((e) => { sessionStorage.removeItem(KUNCI_REDIRECT); setLoading(false); setError(pesanFirebase(e)); });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -56,12 +67,14 @@ function LoginInner() {
     try {
       if (isMobile()) {
         setLoading(true);
+        sessionStorage.setItem(KUNCI_REDIRECT, "1");
         await signInWithRedirect(clientAuth(), googleProvider());
       } else {
         const r = await signInWithPopup(clientAuth(), googleProvider());
         await tukarSesi(r.user);
       }
     } catch (e) {
+      sessionStorage.removeItem(KUNCI_REDIRECT);
       setError(pesanFirebase(e));
       setLoading(false);
     }

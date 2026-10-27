@@ -1,4 +1,5 @@
 import "server-only";
+import { cache } from "react";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { adminAuth, adminDb } from "./firebase-admin";
@@ -47,12 +48,19 @@ export function cekBolehMasuk(email: string, staff: StaffUser | null): string | 
   return null;
 }
 
-/** Verifikasi cookie sesi. Mengembalikan null jika tidak sah. */
-export async function getSession(): Promise<Session | null> {
+/**
+ * Verifikasi cookie sesi. Mengembalikan null jika tidak sah.
+ * Dibungkus cache(): dalam satu permintaan, layout + halaman + action memakai hasil yang sama,
+ * jadi verifikasi & baca Firestore hanya terjadi sekali per permintaan.
+ * Tanda tangan cookie dicek lokal (tanpa cek revokasi ke server Firebase);
+ * status aktif staf tetap dicek ke Firestore setiap permintaan, sehingga menonaktifkan
+ * akun di koleksi users langsung berlaku.
+ */
+export const getSession = cache(async (): Promise<Session | null> => {
   const cookie = cookies().get(SESSION_COOKIE)?.value;
   if (!cookie) return null;
   try {
-    const decoded = await adminAuth().verifySessionCookie(cookie, true);
+    const decoded = await adminAuth().verifySessionCookie(cookie);
     const email = (decoded.email || "").toLowerCase();
     if (!email) return null;
     const staff = await getStaff(email);
@@ -73,7 +81,7 @@ export async function getSession(): Promise<Session | null> {
     console.error("session error:", (e as { code?: string })?.code || "", (e as Error)?.message || e);
     return null;
   }
-}
+});
 
 /** Dipakai di setiap halaman & server action: wajib login, kalau tidak → /login */
 export async function requireSession(): Promise<Session> {

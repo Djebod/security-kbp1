@@ -14,15 +14,18 @@ function sapaan(jam: number) {
 }
 
 export default async function Beranda() {
-  const session = await requireSession();
-  const [row] = await query<{ patroli: string; paket: string; lf: string; tanggal: string; jam: string }>(`
+  // Sesi & angka ringkas diambil berbarengan supaya Beranda lebih cepat terbuka.
+  const [session, [row]] = await Promise.all([
+    requireSession(),
+    query<{ patroli: string; paket: string; lf: string; tanggal: string; jam: string }>(`
     SELECT
       (SELECT count(*) FROM security_log WHERE tanggal = ${SQL_TANGGAL})::text AS patroli,
       (SELECT count(*) FROM paket_manajemen WHERE status = 'TERIMA')::text AS paket,
       (SELECT count(*) FROM laporan_kehilangan WHERE status = 'ON PROGRESS')::text AS lf,
       ${SQL_TANGGAL}::text AS tanggal,
       to_char(now() AT TIME ZONE '${APP.zonaWaktu}', 'HH24') AS jam
-  `);
+  `),
+  ]);
 
   const namaDepan = session.nama.split(" ")[0];
   // Angka berwarna neon hanya bila ada yang perlu ditindak (paket belum diambil, laporan masih berjalan)
