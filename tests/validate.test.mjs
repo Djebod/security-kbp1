@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { str, wajib, salahSatu, tanggalValid } from "../frontend/lib/validate.ts";
+import { str, wajib, salahSatu, tanggalValid, tanggalOpsional, rentangTanggal } from "../frontend/lib/validate.ts";
 
 const fd = new FormData();
 fd.set("nama", "  Andi  ");
@@ -19,4 +19,15 @@ test("salahSatu dan tanggalValid", () => {
   assert.throws(() => salahSatu("Sore", ["Pagi"], "Shift"));
   assert.equal(tanggalValid("2026-10-26", "Tgl"), "2026-10-26");
   assert.throws(() => tanggalValid("26/10/2026", "Tgl"));
+});
+test("tanggalOpsional menolak format salah dan tanggal tidak ada", () => {
+  assert.equal(tanggalOpsional("2026-10-26"), "2026-10-26");
+  assert.equal(tanggalOpsional(undefined), "");
+  assert.equal(tanggalOpsional("2026-02-30"), "");
+  assert.equal(tanggalOpsional("26-10-2026"), "");
+  assert.equal(tanggalOpsional("2026-10-26' OR 1=1"), "");
+});
+test("rentangTanggal menukar bila terbalik", () => {
+  assert.deepEqual(rentangTanggal("2026-10-27", "2026-10-01"), { dari: "2026-10-01", sampai: "2026-10-27" });
+  assert.deepEqual(rentangTanggal("2026-10-01", ""), { dari: "2026-10-01", sampai: "" });
 });

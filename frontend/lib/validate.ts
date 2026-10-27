@@ -22,6 +22,22 @@ export function tanggalValid(v: string, label: string): string {
   return v;
 }
 
+/** Tanggal opsional dari query string: "YYYY-MM-DD" yang benar-benar ada, selain itu "" */
+export function tanggalOpsional(v: string | undefined): string {
+  const s = (v || "").trim();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) return "";
+  const [y, m, d] = s.split("-").map(Number);
+  const dt = new Date(Date.UTC(y, m - 1, d));
+  return dt.getUTCFullYear() === y && dt.getUTCMonth() === m - 1 && dt.getUTCDate() === d ? s : "";
+}
+
+/** Rentang tanggal filter; bila "dari" > "sampai", ditukar otomatis */
+export function rentangTanggal(dari: string | undefined, sampai: string | undefined): { dari: string; sampai: string } {
+  const a = tanggalOpsional(dari);
+  const b = tanggalOpsional(sampai);
+  return a && b && a > b ? { dari: b, sampai: a } : { dari: a, sampai: b };
+}
+
 export function pesanError(e: unknown): string {
   return e instanceof Error ? e.message : "Terjadi kesalahan. Coba lagi.";
 }

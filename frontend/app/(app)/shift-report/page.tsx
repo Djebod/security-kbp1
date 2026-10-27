@@ -3,7 +3,9 @@ import PageHeader from "@/components/PageHeader";
 import SearchFilter from "@/components/SearchFilter";
 import EmptyState from "@/components/EmptyState";
 import Pagination, { pageOf } from "@/components/Pagination";
+import DateRangeFilter from "@/components/DateRangeFilter";
 import { hm, query, tglIndo } from "@/lib/db";
+import { rentangTanggal } from "@/lib/validate";
 import { AKTIVITAS, PER_HALAMAN } from "@/lib/config";
 
 export const dynamic = "force-dynamic";
@@ -12,10 +14,13 @@ type Row = { id: string; tanggal: string; waktu: string; aktivitas: string; nama
 export default async function Page({ searchParams }: { searchParams: Record<string, string | undefined> }) {
   const q = (searchParams.q || "").trim();
   const f = AKTIVITAS.includes(searchParams.f || "") ? (searchParams.f as string) : "";
+  const { dari, sampai } = rentangTanggal(searchParams.dari, searchParams.sampai);
   const page = pageOf(searchParams.page);
   const where: string[] = []; const params: unknown[] = [];
   if (q) { params.push(`%${q}%`); where.push(`(nama_lokasi ILIKE $${params.length} OR security_name ILIKE $${params.length} OR keterangan ILIKE $${params.length} OR pic2 ILIKE $${params.length})`); }
   if (f) { params.push(f); where.push(`aktivitas = $${params.length}`); }
+  if (dari) { params.push(dari); where.push(`tanggal >= $${params.length}::date`); }
+  if (sampai) { params.push(sampai); where.push(`tanggal <= $${params.length}::date`); }
   const W = where.length ? `WHERE ${where.join(" AND ")}` : "";
   const [{ total }] = await query<{ total: string }>(`SELECT count(*)::text AS total FROM checklist ${W}`, params);
   const rows = await query<Row>(
@@ -25,8 +30,14 @@ export default async function Page({ searchParams }: { searchParams: Record<stri
   return (
     <div>
       <PageHeader title="Checklist" subtitle="Aktivitas shift" action={{ href: "/shift-report/baru", label: "Baru" }} />
-      <SearchFilter basePath="/shift-report" q={q} chipValue={f} chips={[{ value: "", label: "Semua" }, ...AKTIVITAS.map((a) => ({ value: a, label: a }))]} />
-      {rows.length === 0 ? <EmptyState text="Belum ada checklist." /> : (
+      <SearchFilter basePath="/shift-report" q={q} chipValue={f} extra={{ dari, sampai }} chips={[{ value: "", label: "Semua" }, ...AKTIVITAS.map((a) => ({ value: a, label: a }))]} />
+      <DateRangeFilter basePath="/shift-report" dari={dari} sampai={sampai} extra={{ q, f }} />
+      {(dari || sampai) && (
+        <p className="mb-3 text-sm text-neo-silver">
+          {Number(total)} checklist · {dari ? tglIndo(dari) : "awal"} s/d {sampai ? tglIndo(sampai) : "sekarang"}
+        </p>
+      )}
+      {rows.length === 0 ? <EmptyState text={dari || sampai ? "Tidak ada checklist pada rentang tanggal ini." : "Belum ada checklist."} /> : (
         <div className="space-y-2">
           {rows.map((r) => (
             <Link key={r.id} href={`/shift-report/${r.id}`} className="card flex gap-3 p-3 hover:border-neo-neon/50">
@@ -45,7 +56,7 @@ export default async function Page({ searchParams }: { searchParams: Record<stri
           ))}
         </div>
       )}
-      <Pagination basePath="/shift-report" page={page} total={Number(total)} perPage={PER_HALAMAN} params={{ q, f }} />
+      <Pagination basePath="/shift-report" page={page} total={Number(total)} perPage={PER_HALAMAN} params={{ q, f, dari, sampai }} />
     </div>
   );
 }
