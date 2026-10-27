@@ -7,23 +7,51 @@ export type Stop = { kode: string; kota: string; ikon: string; detail: string };
 /* ---------- Pesawat terbang di jalur putus-putus (hero) ---------- */
 const JALUR = "M 40 300 C 260 120, 520 80, 760 150 S 1120 260, 1180 60";
 
+const DURASI_TERBANG = 14000; // ms untuk satu kali lintasan
+
+/**
+ * Pesawat digerakkan lewat requestAnimationFrame (bukan SMIL) supaya jalan di semua browser HP,
+ * termasuk Safari iPhone. Posisi dan arah dihitung dari getPointAtLength pada jalur.
+ */
 export function FlightPath() {
-  const [diam, setDiam] = useState(false);
+  const jalurRef = useRef<SVGPathElement>(null);
+  const pesawatRef = useRef<SVGGElement>(null);
+
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setDiam(mq.matches);
+    const jalur = jalurRef.current;
+    const pesawat = pesawatRef.current;
+    if (!jalur || !pesawat) return;
+    const L = jalur.getTotalLength();
+
+    const taruh = (t: number) => {
+      const p = jalur.getPointAtLength(L * t);
+      const q = jalur.getPointAtLength(Math.min(L, L * t + 2));
+      const sudut = (Math.atan2(q.y - p.y, q.x - p.x) * 180) / Math.PI;
+      pesawat.setAttribute("transform", `translate(${p.x} ${p.y}) rotate(${sudut})`);
+    };
+
+    const diam = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (diam) { taruh(0.55); return; }
+
+    let id = 0;
+    const mulai = performance.now();
+    const loop = (now: number) => {
+      taruh(((now - mulai) % DURASI_TERBANG) / DURASI_TERBANG);
+      id = requestAnimationFrame(loop);
+    };
+    id = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(id);
   }, []);
+
   return (
     <svg viewBox="0 0 1200 340" className="h-auto w-full" aria-hidden>
-      <path d={JALUR} fill="none" stroke="#b9bcc2" strokeOpacity=".35" strokeWidth="2" strokeDasharray="10 12" />
+      <path ref={jalurRef} d={JALUR} fill="none" stroke="#b9bcc2" strokeOpacity=".35" strokeWidth="2" strokeDasharray="10 12" />
       {/* titik berangkat & tiba */}
       <circle cx="40" cy="300" r="6" fill="#c8ff2e" />
       <circle cx="40" cy="300" r="14" fill="none" stroke="#c8ff2e" strokeOpacity=".4" />
       <circle cx="1180" cy="60" r="6" fill="#c8ff2e" />
       <circle cx="1180" cy="60" r="14" fill="none" stroke="#c8ff2e" strokeOpacity=".4" />
-      <g>
-        {!diam && <animateMotion dur="14s" repeatCount="indefinite" rotate="auto" path={JALUR} keyPoints="0;1" keyTimes="0;1" calcMode="linear" />}
-        {diam && <animateMotion dur="1s" fill="freeze" rotate="auto" path={JALUR} keyPoints="0.55;0.55" keyTimes="0;1" />}
+      <g ref={pesawatRef} transform="translate(40 300)">
         <Pesawat />
       </g>
     </svg>
