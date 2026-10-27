@@ -103,11 +103,11 @@ function LoginInner() {
 
         <div className="mt-8 space-y-4">
           {inApp ? (
-            <div className="rounded-xl border border-amber-400/30 bg-amber-400/10 p-4 text-sm text-amber-200">
+            <div className="rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-800">
               Login Google tidak didukung di browser bawaan aplikasi ini. <b>Buka lewat Chrome atau Safari.</b>
             </div>
           ) : (
-            <button onClick={masuk} disabled={loading} className="btn btn-lg bg-neo-cloud text-neo-black hover:bg-white">
+            <button onClick={masuk} disabled={loading} className="btn btn-lg border border-neo-line bg-white text-neo-cloud shadow-edge hover:border-neo-neon/50 hover:bg-neo-raise">
               <GoogleIcon />
               {loading ? "Memproses..." : "Masuk dengan Google"}
             </button>

@@ -29,8 +29,8 @@ export default async function Page({ params }: { params: { id: string } }) {
       </div>
       {r.status === "DONE" ? (
         <div className="notice-ok">
-          <p className="text-sm font-semibold text-emerald-200">Selesai {tglIndo(r.tanggal_selesai)} {hm(r.waktu_selesai)} oleh {r.diselesaikan_oleh}</p>
-          <p className="mt-1 whitespace-pre-wrap text-sm text-emerald-100">{r.remark}</p>
+          <p className="text-sm font-semibold text-emerald-800">Selesai {tglIndo(r.tanggal_selesai)} {hm(r.waktu_selesai)} oleh {r.diselesaikan_oleh}</p>
+          <p className="mt-1 whitespace-pre-wrap text-sm text-emerald-700">{r.remark}</p>
         </div>
       ) : <SelesaikanForm id={r.id} />}
     </div>

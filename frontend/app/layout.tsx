@@ -13,11 +13,11 @@ export const metadata: Metadata = {
   description: APP.deskripsi,
   applicationName: APP.nama,
   manifest: "/manifest.webmanifest",
-  appleWebApp: { capable: true, title: APP.namaPendek, statusBarStyle: "black" },
+  appleWebApp: { capable: true, title: APP.namaPendek, statusBarStyle: "default" },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b1a20",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,

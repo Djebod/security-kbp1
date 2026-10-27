@@ -65,7 +65,7 @@ export default function Scanner({ onScan, onClose, title = "Arahkan kamera ke QR
   }
 
   return (
-    <div className="fixed inset-0 z-[60] flex flex-col bg-neo-black text-neo-silver">
+    <div className="fixed inset-0 z-[60] flex flex-col bg-neo-black text-white/80">
       <div className="flex items-center justify-between px-4 py-3">
         <p className="text-sm">{title}</p>
         <button onClick={tutup} className="rounded-full p-2 hover:bg-white/10" aria-label="Tutup"><Icon name="x" /></button>
@@ -80,7 +80,7 @@ export default function Scanner({ onScan, onClose, title = "Arahkan kamera ke QR
             <Icon name="flash" className="h-4 w-4" /> {torch ? "Matikan Flash" : "Nyalakan Flash"}
           </button>
         )}
-        <button onClick={tutup} className="btn flex-1 bg-neo-cloud text-neo-black">Tutup</button>
+        <button onClick={tutup} className="btn flex-1 bg-white text-neo-cloud">Tutup</button>
       </div>
     </div>
   );

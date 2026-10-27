@@ -1,7 +1,6 @@
 /**
  * Logo resmi HARPER PALEMBANG by ASTON (path diambil dari SVG resmi harperhotels.com, viewBox 350.76 x 56.27).
- * Gaya neon: bingkai + garis tegak memakai warna aksen (neo-neon) dengan cahaya, teks memakai warna terang.
- * light=false untuk latar terang (teks gelap).
+ * Gaya neon: bingkai + garis tegak oranye (neo-neon) bercahaya, nama hotel teal, "BY ASTON" oranye — untuk latar putih.
  */
 const FRAME = "M348.26,49.7H2.5V7.42h345.76v42.28ZM3.5,48.7h343.76V8.42H3.5v40.28Z";
 const BY_ASTON = "M281.06,24.78h3c.28,0,.51.1.7.3.2.19.3.43.3.7v1.5c0,.28-.1.52-.3.71-.02.02-.03.03-.05.04l.05.05c.2.19.3.43.3.7v2c0,.28-.1.52-.3.71-.19.19-.43.29-.7.29h-3v-7ZM284.06,25.78h-2v2h2v-2ZM284.06,28.78h-2v2h2v-2Z M289.96,28.78l-1.5-3v-1h1v1l1,2,1-2v-1h1v1l-1.5,3v3h-1v-3Z M300.74,25.78c0-.28.1-.51.29-.7.19-.2.43-.3.71-.3h2c.28,0,.51.1.7.3.2.19.3.43.3.7v6h-1v-3h-2v3h-1v-6ZM303.74,25.78h-2v2h2v-2Z M308.43,31.49c-.19-.19-.29-.43-.29-.71v-1h1v1h2v-2h-2c-.28,0-.52-.1-.71-.29-.19-.19-.29-.43-.29-.71v-2c0-.28.1-.51.29-.7.19-.2.43-.3.71-.3h2c.28,0,.51.1.7.3.2.19.3.43.3.7v1h-1v-1h-2v2h2c.28,0,.51.1.7.3.2.19.3.43.3.7v2c0,.28-.1.52-.3.71-.19.19-.43.29-.7.29h-2c-.28,0-.52-.1-.71-.29Z M317.03,25.78h-1.5v-1h4v1h-1.5v6h-1v-6Z M323.21,31.49c-.19-.19-.29-.43-.29-.71v-5c0-.28.1-.51.29-.7.19-.2.43-.3.71-.3h2c.28,0,.51.1.7.3.2.19.3.43.3.7v5c0,.28-.1.52-.3.71-.19.19-.43.29-.7.29h-2c-.28,0-.52-.1-.71-.29ZM325.92,25.78h-2v5h2v-5Z M330.32,24.78h1l2.5,5v-5h1v7h-1l-2.5-5v5h-1v-7Z";
@@ -9,16 +8,15 @@ const WORDMARK = "M99.47,39.01c-.03.06-.04.12-.04.17,0,.12.08.24.23.37.15.13.35.
 
 const UKURAN = { sm: "w-40", md: "w-56", lg: "w-80" } as const;
 
-export default function BrandLogo({ size = "md", light = true, glow = true }: { size?: keyof typeof UKURAN; light?: boolean; glow?: boolean }) {
-  const teks = light ? "fill-neo-cloud" : "fill-neo-black";
+export default function BrandLogo({ size = "md", glow = true }: { size?: keyof typeof UKURAN; glow?: boolean }) {
   return (
     <svg viewBox="0 0 350.76 56.27" role="img" aria-label="Harper Palembang by Aston" className={`h-auto max-w-full ${UKURAN[size]}`}>
       <g className={`fill-neo-neon ${glow ? "drop-shadow-neon" : ""}`}>
         <path d={FRAME} />
         <rect x="263.35" y="2.5" width="4.8" height="51.27" />
       </g>
-      <path d={WORDMARK} className={teks} />
-      <path d={BY_ASTON} className={light ? "fill-neo-neon" : "fill-neo-black"} />
+      <path d={WORDMARK} className="fill-neo-teal" />
+      <path d={BY_ASTON} className="fill-neo-neon" />
     </svg>
   );
 }

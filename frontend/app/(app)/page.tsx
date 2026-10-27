@@ -65,7 +65,7 @@ export default async function Beranda() {
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           {MODUL.map((m) => (
             <Link key={m.href} href={m.href} className="card group flex flex-col gap-4 p-4 transition hover:border-neo-neon/50">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-neo-neon/10 text-neo-neon ring-1 ring-inset ring-neo-neon/20 transition group-hover:bg-neo-neon group-hover:text-neo-black">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-neo-neon/10 text-neo-neon ring-1 ring-inset ring-neo-neon/20 transition group-hover:bg-neo-neon group-hover:text-white">
                 <Icon name={m.ikon} />
               </span>
               <div>
@@ -80,7 +80,7 @@ export default async function Beranda() {
       <section>
         <h2 className="mb-3 text-sm font-semibold text-neo-silver">Lainnya</h2>
         <Link href="/tentang" className="card group flex items-center gap-4 p-4 transition hover:border-neo-neon/50">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neo-neon/10 text-neo-neon ring-1 ring-inset ring-neo-neon/20 transition group-hover:bg-neo-neon group-hover:text-neo-black">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neo-neon/10 text-neo-neon ring-1 ring-inset ring-neo-neon/20 transition group-hover:bg-neo-neon group-hover:text-white">
             <Icon name="info" />
           </span>
           <div className="min-w-0 flex-1">

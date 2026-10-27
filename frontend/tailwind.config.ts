@@ -1,14 +1,16 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Token warna brand HARPER PALEMBANG (tema gelap teal + aksen neon tembaga).
- * Nama token tetap `neo-*` supaya semua komponen tidak perlu diubah.
- * Referensi: logo resmi Harper (putih di atas teal tua #1D3A47), gaya "modern rustic".
- * - base / panel / raise / line : permukaan gelap bertingkat, turunan teal Harper
- * - neon                        : satu-satunya aksen (tembaga menyala seperti lampu rustic);
- *                                 hanya untuk hal aktif / butuh perhatian
- * - cloud / silver              : teks utama (krem hangat) / teks sekunder
- * - black / ink / steel / mist  : teks gelap di atas aksen + permukaan lain
+ * Token warna brand HARPER PALEMBANG — tema terang: mayoritas PUTIH + ORANYE, aksen TEAL untuk tombol.
+ * Nama token tetap `neo-*` supaya komponen tidak perlu diubah semua.
+ * Referensi: logo resmi Harper; teal tua #1D3A47 dipakai sebagai warna tombol utama.
+ * - base / panel / raise / line : permukaan putih bertingkat (raise = krem oranye sangat muda)
+ * - neon                        : oranye Harper (warna mayor): menu aktif, chip aktif, badge, ikon, logo
+ * - teal / teal-deep            : aksen tombol utama (btn-primary)
+ * - cloud / silver              : teks utama (gelap) / teks sekunder di atas putih
+ * - black                       : latar gelap layar scanner kamera
+ * - white                       : teks di atas oranye / teal
+ * - mist                        : tepi jalan di peta halaman Tentang
  */
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}"],
@@ -16,19 +18,19 @@ const config: Config = {
     extend: {
       colors: {
         neo: {
-          black: "#0a1418",
-          base: "#0b1a20",
-          panel: "#10252d",
-          raise: "#173139",
-          line: "#24414b",
-          ink: "#12232a",
-          steel: "#1d3a47",
-          silver: "#b9c6c7",
-          mist: "#e4dccf",
-          cloud: "#f6efe6",
+          black: "#13232b",
+          base: "#ffffff",
+          panel: "#ffffff",
+          raise: "#fff4ec",
+          line: "#f0e0d3",
+          silver: "#5f6b71",
+          mist: "#e9dccf",
+          cloud: "#1b2a31",
           white: "#ffffff",
-          neon: "#ff9f4a",
-          "neon-deep": "#e07a26",
+          neon: "#f26b1d",
+          "neon-deep": "#d4560c",
+          teal: "#1d3a47",
+          "teal-deep": "#14303c",
         },
       },
       fontFamily: {
@@ -39,11 +41,12 @@ const config: Config = {
       borderRadius: { xl2: "1.25rem" },
       boxShadow: {
         soft: "0 1px 2px rgba(0,0,0,.04), 0 8px 24px -12px rgba(0,0,0,.15)",
-        edge: "inset 0 1px 0 rgba(255,255,255,.05)",
-        glow: "0 0 0 1px rgba(255,159,74,.35), 0 10px 32px -10px rgba(255,159,74,.5)",
+        edge: "0 1px 2px rgba(29,58,71,.05), 0 6px 18px -12px rgba(242,107,29,.25)",
+        glow: "0 0 0 1px rgba(242,107,29,.35), 0 10px 28px -10px rgba(242,107,29,.55)",
+        "glow-teal": "0 0 0 1px rgba(29,58,71,.25), 0 10px 26px -10px rgba(29,58,71,.55)",
       },
       dropShadow: {
-        neon: ["0 0 2px rgba(255,159,74,.9)", "0 0 8px rgba(255,159,74,.55)"],
+        neon: ["0 0 1.5px rgba(242,107,29,.8)", "0 0 6px rgba(242,107,29,.45)"],
       },
     },
   },

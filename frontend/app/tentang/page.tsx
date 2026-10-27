@@ -120,7 +120,7 @@ export default async function Tentang() {
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
         <Judul title="Awak perjalanan" sub="Tim yang membawa aplikasi ini dari gagasan sampai dipakai di lapangan." />
         <div className="card flex items-center gap-4 border-neo-neon/40 p-5">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-neo-neon text-neo-black shadow-glow">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-neo-neon text-white shadow-glow">
             <Icon name="flash" className="h-6 w-6" />
           </div>
           <div className="min-w-0">
@@ -140,7 +140,7 @@ export default async function Tentang() {
       </section>
 
       {/* DESTINASI: teknologi */}
-      <section className="border-y border-neo-line bg-neo-panel/40 py-14">
+      <section className="border-y border-neo-line bg-neo-raise/60 py-14">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <Judul title="Destinasi teknologi" sub="Delapan tempat yang disinggahi aplikasi. Setiap kartu satu keputusan teknis." />
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -186,7 +186,7 @@ export default async function Tentang() {
       </section>
 
       {/* EMPAT TUJUAN: modul */}
-      <section className="border-y border-neo-line bg-neo-panel/40 py-14">
+      <section className="border-y border-neo-line bg-neo-raise/60 py-14">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <Judul title="Empat tujuan, empat modul" sub="Tiap modul punya satu tabel transaksi. Master titik patroli dipakai bersama." />
           <div className="grid gap-3 sm:grid-cols-2">
@@ -221,7 +221,7 @@ export default async function Tentang() {
       </section>
 
       {/* PETA PROYEK + YANG TIDAK DIBAWA */}
-      <section className="border-t border-neo-line bg-neo-panel/40 py-14">
+      <section className="border-t border-neo-line bg-neo-raise/60 py-14">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:grid-cols-2 sm:px-6">
           <div>
             <h2 className="font-display text-base uppercase tracking-[.15em] text-neo-cloud">Peta proyek</h2>
