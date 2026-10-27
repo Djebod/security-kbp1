@@ -41,9 +41,14 @@ export default async function Beranda() {
         <p className="font-mono text-xs uppercase tracking-[.2em] text-neo-neon">{tglIndo(row.tanggal, true)}</p>
         <h1 className="mt-2 text-2xl font-semibold tracking-tight text-neo-cloud sm:text-3xl">{sapaan(Number(row.jam))}, {namaDepan}</h1>
         <p className="mt-1 text-sm text-neo-silver/70">{session.dept} · {APP.tempat}</p>
-        <form action="/api/auth/logout" method="post" className="mt-4 lg:hidden">
-          <button className="btn-outline px-4 py-2 text-sm">Keluar</button>
-        </form>
+        <div className="mt-4 flex flex-wrap gap-2 lg:hidden">
+          <Link href="/tentang" className="btn-outline px-4 py-2 text-sm">
+            <Icon name="info" className="h-4 w-4" /> Tentang sistem
+          </Link>
+          <form action="/api/auth/logout" method="post">
+            <button className="btn-outline px-4 py-2 text-sm">Keluar</button>
+          </form>
+        </div>
       </section>
 
       <section className="grid grid-cols-3 gap-3">
@@ -70,6 +75,20 @@ export default async function Beranda() {
             </Link>
           ))}
         </div>
+      </section>
+
+      <section>
+        <h2 className="mb-3 text-sm font-semibold text-neo-silver">Lainnya</h2>
+        <Link href="/tentang" className="card group flex items-center gap-4 p-4 transition hover:border-neo-neon/50">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-neo-neon/10 text-neo-neon ring-1 ring-inset ring-neo-neon/20 transition group-hover:bg-neo-neon group-hover:text-neo-black">
+            <Icon name="info" />
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="font-semibold text-neo-cloud">Tentang sistem</p>
+            <p className="mt-0.5 text-xs text-neo-silver/70">Peta perjalanan data, tim, dan teknologi yang dipakai aplikasi ini.</p>
+          </div>
+          <Icon name="external" className="h-4 w-4 shrink-0 text-neo-silver/50" />
+        </Link>
       </section>
     </div>
   );

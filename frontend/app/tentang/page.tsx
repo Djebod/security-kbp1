@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import NeoLogo from "@/components/NeoLogo";
 import Icon from "@/components/Icon";
 import { APP, MODUL } from "@/lib/config";
+import { getSession } from "@/lib/session";
 import { FlightPath, RoadList, RoadMap, type Stop } from "./TravelMap";
 
 export const metadata: Metadata = {
@@ -84,7 +85,11 @@ const TIDAK_DIBAWA = [
 
 /* ====== HALAMAN ====== */
 
-export default function Tentang() {
+export default async function Tentang() {
+  // Sudah login → tombol kembali ke Beranda; belum → ke halaman masuk.
+  const session = await getSession();
+  const tujuan = session ? "/" : "/login";
+  const labelTombol = session ? "Kembali ke aplikasi" : "Masuk aplikasi";
   return (
     <main className="min-h-dvh bg-neo-base text-neo-cloud">
       {/* HERO: jalur penerbangan */}
@@ -94,7 +99,7 @@ export default function Tentang() {
         <div className="relative mx-auto max-w-6xl px-4 pb-6 pt-8 sm:px-6">
           <div className="flex items-center justify-between">
             <NeoLogo size="sm" />
-            <Link href="/login" className="btn-primary px-4 py-2 text-xs">Masuk aplikasi</Link>
+            <Link href={tujuan} className="btn-primary px-4 py-2 text-xs">{labelTombol}</Link>
           </div>
           <div className="mt-12 max-w-2xl lg:mt-16">
             <p className="font-display text-[11px] uppercase tracking-[.35em] text-neo-neon">Tentang sistem</p>
@@ -236,7 +241,7 @@ export default function Tentang() {
           </div>
         </div>
         <div className="mx-auto mt-12 max-w-6xl px-4 text-center sm:px-6">
-          <Link href="/login" className="btn-primary px-6">Masuk aplikasi</Link>
+          <Link href={tujuan} className="btn-primary px-6">{labelTombol}</Link>
           <p className="mt-6 font-display text-[10px] uppercase tracking-[.3em] text-neo-silver/40">{APP.tempat} · Security System</p>
         </div>
       </section>

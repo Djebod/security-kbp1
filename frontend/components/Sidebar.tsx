@@ -30,7 +30,7 @@ export default function Sidebar({ session }: { session: Session }) {
           );
         })}
         <Link href="/tentang" className={`${itemCls} ${pasifCls}`}>
-          <Icon name="external" /> Tentang sistem
+          <Icon name="info" className="h-5 w-5" /> Tentang sistem
         </Link>
         {APP.portalUrl && (
           <a href={APP.portalUrl} target="_blank" rel="noreferrer" className={`${itemCls} ${pasifCls}`}>
