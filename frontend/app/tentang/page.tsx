@@ -111,14 +111,26 @@ export default function Tentang() {
         </div>
       </section>
 
-      {/* RUTE: jalan berkelok */}
+      {/* TIM */}
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <Judul title="Rute satu catatan" sub="Setiap catatan menempuh lima pos sebelum tampil di Beranda. Setiap pos punya tugas keamanannya sendiri." />
-        <div className="hidden md:block md:pb-24 md:pt-28">
-          <RoadMap stops={RUTE} />
+        <Judul title="Awak perjalanan" sub="Tim yang membawa aplikasi ini dari gagasan sampai dipakai di lapangan." />
+        <div className="card flex items-center gap-4 border-neo-neon/40 p-5">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-neo-neon text-neo-black shadow-glow">
+            <Icon name="flash" className="h-6 w-6" />
+          </div>
+          <div className="min-w-0">
+            <p className="font-mono text-[10px] uppercase tracking-[.25em] text-neo-neon">Leader</p>
+            <p className="mt-1 truncate font-display text-base uppercase tracking-[.12em] text-neo-cloud sm:text-lg">{TIM.leader}</p>
+          </div>
         </div>
-        <div className="md:hidden">
-          <RoadList stops={RUTE} />
+        <p className="mb-3 mt-8 font-mono text-[10px] uppercase tracking-[.25em] text-neo-silver/60">Team member</p>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {TIM.anggota.map((n) => (
+            <div key={n} className="card flex items-center gap-3 p-4">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neo-neon/10 font-mono text-sm text-neo-neon ring-1 ring-inset ring-neo-neon/20">{n.charAt(0)}</span>
+              <p className="truncate font-display text-xs uppercase tracking-[.12em] text-neo-cloud sm:text-sm">{n}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -138,6 +150,17 @@ export default function Tentang() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* RUTE: jalan berkelok */}
+      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+        <Judul title="Rute satu catatan" sub="Setiap catatan menempuh lima pos sebelum tampil di Beranda. Setiap pos punya tugas keamanannya sendiri." />
+        <div className="hidden md:block md:pb-24 md:pt-28">
+          <RoadMap stops={RUTE} />
+        </div>
+        <div className="md:hidden">
+          <RoadList stops={RUTE} />
         </div>
       </section>
 
@@ -176,29 +199,6 @@ export default function Tentang() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* TIM */}
-      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-        <Judul title="Awak perjalanan" sub="Tim yang membawa aplikasi ini dari gagasan sampai dipakai di lapangan." />
-        <div className="card flex items-center gap-4 border-neo-neon/40 p-5">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-neo-neon text-neo-black shadow-glow">
-            <Icon name="flash" className="h-6 w-6" />
-          </div>
-          <div className="min-w-0">
-            <p className="font-mono text-[10px] uppercase tracking-[.25em] text-neo-neon">Leader</p>
-            <p className="mt-1 truncate font-display text-base uppercase tracking-[.12em] text-neo-cloud sm:text-lg">{TIM.leader}</p>
-          </div>
-        </div>
-        <p className="mb-3 mt-8 font-mono text-[10px] uppercase tracking-[.25em] text-neo-silver/60">Team member</p>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {TIM.anggota.map((n) => (
-            <div key={n} className="card flex items-center gap-3 p-4">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neo-neon/10 font-mono text-sm text-neo-neon ring-1 ring-inset ring-neo-neon/20">{n.charAt(0)}</span>
-              <p className="truncate font-display text-xs uppercase tracking-[.12em] text-neo-cloud sm:text-sm">{n}</p>
-            </div>
-          ))}
         </div>
       </section>
 
