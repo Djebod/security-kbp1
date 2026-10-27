@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#0b0c0f"/>
-  <text x="32" y="28" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8" letter-spacing="3" fill="#b9bcc2">HOTEL</text>
-  <text x="32" y="48" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="22" letter-spacing="2" fill="#c8ff2e">NEO</text>
+  <rect width="64" height="64" rx="14" fill="#0b1a20"/>
+  <rect x="8" y="17" width="48" height="30" fill="none" stroke="#ff9f4a" stroke-width="1.6"/>
+  <rect x="44" y="12" width="2.6" height="40" fill="#ff9f4a"/>
+  <text x="26" y="39.5" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="20" fill="#f6efe6">H</text>
 </svg>

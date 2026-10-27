@@ -4,9 +4,9 @@
  */
 
 export const APP = {
-  nama: "Hotel Neo KBP",
-  namaPendek: "NEO KBP",
-  tempat: "Hotel NEO KBP by ASTON",
+  nama: "Harper Palembang",
+  namaPendek: "HARPER PLM",
+  tempat: "Harper Palembang by ASTON",
   deskripsi: "Aplikasi operasional Security: patroli, checklist aktivitas, lost & found, dan paket.",
   zonaWaktu: "Asia/Jakarta",
   portalUrl: process.env.NEXT_PUBLIC_PORTAL_URL || "",

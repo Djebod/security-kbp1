@@ -6,10 +6,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { getRedirectResult, signInWithPopup, signInWithRedirect, signOut, type User } from "firebase/auth";
 import { clientAuth, googleProvider } from "@/lib/firebase-client";
 import { APP } from "@/lib/config";
-import NeoLogo from "@/components/NeoLogo";
+import BrandLogo from "@/components/BrandLogo";
 
 /** Penanda di sessionStorage: sedang menunggu hasil login redirect dari Google */
-const KUNCI_REDIRECT = "neo_login_redirect";
+const KUNCI_REDIRECT = "harper_login_redirect";
 
 function isInAppBrowser() {
   const ua = navigator.userAgent || "";
@@ -87,7 +87,7 @@ function LoginInner() {
         <div className="dot-grid pointer-events-none absolute inset-0" aria-hidden />
         <div className="pointer-events-none absolute -bottom-32 -left-24 h-80 w-80 rounded-full bg-neo-neon/10 blur-3xl" aria-hidden />
         <div className="relative">
-          <NeoLogo size="md" />
+          <BrandLogo size="md" />
         </div>
         <div className="relative mt-10 lg:mt-0">
           <p className="font-display text-[11px] uppercase tracking-[.35em] text-neo-neon">Security System</p>

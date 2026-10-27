@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import NeoLogo from "@/components/NeoLogo";
+import BrandLogo from "@/components/BrandLogo";
 import Icon from "@/components/Icon";
 import { APP, MODUL } from "@/lib/config";
 import { getSession } from "@/lib/session";
@@ -8,7 +8,7 @@ import { FlightPath, RoadList, RoadMap, type Stop } from "./TravelMap";
 
 export const metadata: Metadata = {
   title: "Tentang Sistem",
-  description: "Peta perjalanan teknologi: fondasi, pengguna, database, dan metode yang dipakai aplikasi Security Hotel Neo KBP.",
+  description: "Peta perjalanan teknologi: fondasi, pengguna, database, dan metode yang dipakai aplikasi Security Harper Palembang.",
 };
 
 /* ====== DATA HALAMAN (ubah di sini) ====== */
@@ -98,7 +98,7 @@ export default async function Tentang() {
         <div className="pointer-events-none absolute -right-32 top-0 h-96 w-96 rounded-full bg-neo-neon/10 blur-3xl" aria-hidden />
         <div className="relative mx-auto max-w-6xl px-4 pb-6 pt-8 sm:px-6">
           <div className="flex items-center justify-between">
-            <NeoLogo size="sm" />
+            <BrandLogo size="sm" />
             <Link href={tujuan} className="btn-primary px-4 py-2 text-xs">{labelTombol}</Link>
           </div>
           <div className="mt-12 max-w-2xl lg:mt-16">

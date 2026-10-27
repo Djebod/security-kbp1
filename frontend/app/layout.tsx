@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Michroma, Plus_Jakarta_Sans } from "next/font/google";
+import { Cinzel, JetBrains_Mono, Lato } from "next/font/google";
 import "./globals.css";
 import { APP } from "@/lib/config";
 
-/* Plus Jakarta Sans untuk isi, Michroma (geometris) untuk nama brand, JetBrains Mono untuk angka & jam */
-const sans = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
-const display = Michroma({ subsets: ["latin"], weight: "400", variable: "--font-display", display: "swap" });
+/* Mengikuti situs resmi Harper: Lato untuk isi, Cinzel (serif klasik) untuk nama brand & judul, JetBrains Mono untuk angka & jam */
+const sans = Lato({ subsets: ["latin"], weight: ["400", "700", "900"], variable: "--font-sans", display: "swap" });
+const display = Cinzel({ subsets: ["latin"], weight: ["400", "600"], variable: "--font-display", display: "swap" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0c0f",
+  themeColor: "#0b1a20",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,

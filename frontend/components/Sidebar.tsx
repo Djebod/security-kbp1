@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { APP, MODUL } from "@/lib/config";
 import type { Session } from "@/lib/session";
-import NeoLogo from "./NeoLogo";
+import BrandLogo from "./BrandLogo";
 import Icon from "./Icon";
 
 const itemCls = "relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition";
@@ -16,7 +16,7 @@ export default function Sidebar({ session }: { session: Session }) {
   return (
     <aside className="hidden w-64 shrink-0 flex-col border-r border-neo-line bg-neo-base lg:flex lg:sticky lg:top-0 lg:h-dvh">
       <div className="flex flex-col items-center border-b border-neo-line py-8">
-        <NeoLogo size="md" />
+        <BrandLogo size="md" />
         <p className="mt-4 font-display text-[10px] uppercase tracking-[.3em] text-neo-silver/60">Security</p>
       </div>
       <nav className="flex-1 space-y-1 px-3 py-4">

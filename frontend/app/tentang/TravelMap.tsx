@@ -45,12 +45,12 @@ export function FlightPath() {
 
   return (
     <svg viewBox="0 0 1200 340" className="h-auto w-full" aria-hidden>
-      <path ref={jalurRef} d={JALUR} fill="none" stroke="#b9bcc2" strokeOpacity=".35" strokeWidth="2" strokeDasharray="10 12" />
+      <path ref={jalurRef} d={JALUR} fill="none" stroke="#b9c6c7" strokeOpacity=".35" strokeWidth="2" strokeDasharray="10 12" />
       {/* titik berangkat & tiba */}
-      <circle cx="40" cy="300" r="6" fill="#c8ff2e" />
-      <circle cx="40" cy="300" r="14" fill="none" stroke="#c8ff2e" strokeOpacity=".4" />
-      <circle cx="1180" cy="60" r="6" fill="#c8ff2e" />
-      <circle cx="1180" cy="60" r="14" fill="none" stroke="#c8ff2e" strokeOpacity=".4" />
+      <circle cx="40" cy="300" r="6" fill="#ff9f4a" />
+      <circle cx="40" cy="300" r="14" fill="none" stroke="#ff9f4a" strokeOpacity=".4" />
+      <circle cx="1180" cy="60" r="6" fill="#ff9f4a" />
+      <circle cx="1180" cy="60" r="14" fill="none" stroke="#ff9f4a" strokeOpacity=".4" />
       <g ref={pesawatRef} transform="translate(40 300)">
         <Pesawat />
       </g>
@@ -62,8 +62,8 @@ function Pesawat() {
   /* Pesawat tampak atas, hidung di kanan (arah +x): badan 1..56, sayap di tengah menyapu ke belakang, ekor kecil di kiri */
   return (
     <g transform="translate(-28 -14)">
-      <path d="M56 14 L48 10.5 L32 9.5 L20 1.5 L14 1.5 L22 9.5 L9 10.5 L5 6 L2 6 L4 14 L2 22 L5 22 L9 17.5 L22 18.5 L14 26.5 L20 26.5 L32 18.5 L48 17.5 Z" fill="#f3f4f6" />
-      <circle cx="47" cy="14" r="2.2" fill="#c8ff2e" />
+      <path d="M56 14 L48 10.5 L32 9.5 L20 1.5 L14 1.5 L22 9.5 L9 10.5 L5 6 L2 6 L4 14 L2 22 L5 22 L9 17.5 L22 18.5 L14 26.5 L20 26.5 L32 18.5 L48 17.5 Z" fill="#f6efe6" />
+      <circle cx="47" cy="14" r="2.2" fill="#ff9f4a" />
     </g>
   );
 }
@@ -95,11 +95,11 @@ export function RoadMap({ stops }: { stops: Stop[] }) {
         {/* bayangan jalan */}
         <path d={JALAN} fill="none" stroke="#000" strokeOpacity=".45" strokeWidth="70" transform="translate(0 10)" />
         {/* tepi putih */}
-        <path d={JALAN} fill="none" stroke="#e5e7eb" strokeWidth="64" />
+        <path d={JALAN} fill="none" stroke="#e4dccf" strokeWidth="64" />
         {/* badan jalan */}
-        <path ref={pathRef} d={JALAN} fill="none" stroke="#1f232a" strokeWidth="56" />
+        <path ref={pathRef} d={JALAN} fill="none" stroke="#173139" strokeWidth="56" />
         {/* garis tengah neon putus-putus */}
-        <path d={JALAN} fill="none" stroke="#c8ff2e" strokeWidth="2.5" strokeDasharray="16 14" strokeOpacity=".9" />
+        <path d={JALAN} fill="none" stroke="#ff9f4a" strokeWidth="2.5" strokeDasharray="16 14" strokeOpacity=".9" />
       </svg>
 
       {titik.map((t, i) => {
@@ -132,7 +132,7 @@ export function RoadList({ stops }: { stops: Stop[] }) {
   return (
     <ol className="relative ml-6 space-y-10 py-4">
       {/* badan jalan vertikal: tepi putih, badan gelap, garis tengah neon putus-putus */}
-      <div className="absolute -left-6 top-0 h-full w-12 rounded-full border-x-4 border-neo-mist bg-[#1f232a]" aria-hidden>
+      <div className="absolute -left-6 top-0 h-full w-12 rounded-full border-x-4 border-neo-mist bg-[#173139]" aria-hidden>
         <div className="mx-auto h-full w-0.5 border-l-2 border-dashed border-neo-neon/80" />
       </div>
       {stops.map((s) => (

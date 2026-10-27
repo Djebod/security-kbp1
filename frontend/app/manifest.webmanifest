@@ -1,9 +1,9 @@
 {
-  "name": "Hotel Neo KBP Security",
-  "short_name": "NEO Security",
+  "name": "Harper Palembang Security",
+  "short_name": "Harper Security",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0b0c0f",
-  "theme_color": "#0b0c0f",
+  "background_color": "#0b1a20",
+  "theme_color": "#0b1a20",
   "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
 }

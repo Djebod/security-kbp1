@@ -46,7 +46,7 @@ body { @apply bg-neo-base text-neo-cloud antialiased; }
 
   /* Tekstur titik halus untuk panel brand (login) */
   .dot-grid {
-    background-image: radial-gradient(rgba(185,188,194,.22) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(185,198,199,.18) 1px, transparent 1px);
     background-size: 22px 22px;
     -webkit-mask-image: radial-gradient(ellipse at 30% 40%, #000 20%, transparent 75%);
     mask-image: radial-gradient(ellipse at 30% 40%, #000 20%, transparent 75%);
