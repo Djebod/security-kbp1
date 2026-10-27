@@ -31,11 +31,11 @@ export function FlightPath() {
 }
 
 function Pesawat() {
-  /* bentuk pesawat sederhana, hidung menghadap ke kanan (arah +x), ukuran sekitar 56 px */
+  /* Pesawat tampak atas, hidung di kanan (arah +x): badan 1..56, sayap di tengah menyapu ke belakang, ekor kecil di kiri */
   return (
     <g transform="translate(-28 -14)">
-      <path d="M2 14 L20 10 L34 0 L40 0 L33 11 L52 10 L56 14 L52 18 L33 17 L40 28 L34 28 L20 18 L2 14 Z" fill="#f3f4f6" />
-      <path d="M20 10 L26 12 L26 16 L20 18 Z" fill="#c8ff2e" />
+      <path d="M56 14 L48 10.5 L32 9.5 L20 1.5 L14 1.5 L22 9.5 L9 10.5 L5 6 L2 6 L4 14 L2 22 L5 22 L9 17.5 L22 18.5 L14 26.5 L20 26.5 L32 18.5 L48 17.5 Z" fill="#f3f4f6" />
+      <circle cx="47" cy="14" r="2.2" fill="#c8ff2e" />
     </g>
   );
 }
